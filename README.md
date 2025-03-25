@@ -29,22 +29,12 @@ DUTrack is a simple yet efficient vision-language tracker with the capability to
 
 
 ## Install the environment
-**Option1**: Use the Anaconda (CUDA 10.2)
+**Conda**: Use the Anaconda (CUDA 11.2)
 ```
-conda create -n ostrack python=3.8
-conda activate ostrack
+conda create -n DUTrack python=3.8
+conda activate DUTrack
 bash install.sh
 ```
-
-**Option2**: Use the Anaconda (CUDA 11.3)
-```
-conda env create -f ostrack_cuda113_env.yaml
-```
-
-**Option3**: Use the docker file
-
-We provide the full docker file here.
-
 
 ## Set project paths
 Run the following command to set paths for this project
