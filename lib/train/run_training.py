@@ -8,7 +8,7 @@ import torch.distributed as dist
 import random
 import numpy as np
 torch.backends.cudnn.benchmark = False
-
+import _init_paths
 import lib.train.admin.settings as ws_settings
 
 
@@ -78,7 +78,7 @@ def main():
     parser.add_argument('--script', type=str, required=True, help='Name of the train script.')
     parser.add_argument('--config', type=str, required=True, help="Name of the config file.")
     parser.add_argument('--cudnn_benchmark', type=bool, default=True, help='Set cudnn benchmark on (1) or off (0) (default is on).')
-    parser.add_argument('--local-rank', default=-1, type=int, help='node rank for distributed training')
+    parser.add_argument('--local_rank', default=-1, type=int, help='node rank for distributed training')
     parser.add_argument('--save_dir', type=str, help='the directory to save checkpoints and logs')
     parser.add_argument('--seed', type=int, default=42, help='seed for random numbers')
     parser.add_argument('--use_lmdb', type=int, choices=[0, 1], default=0)  # whether datasets are in lmdb format
