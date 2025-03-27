@@ -1,6 +1,6 @@
-import math
 import os
-from typing import List
+
+from huggingface_hub import hf_hub_download
 
 import torch
 from torch import nn
@@ -36,6 +36,33 @@ class DUTrack(nn.Module):
 
         self.track_query = None
         self.token_len = token_len
+
+    @classmethod
+    def from_pretrained(cls, repo_id: str):
+        """Load a model from HuggingFace Hub.
+        
+        Args:
+            repo_id (str): HuggingFace Hub repository ID
+            
+        Returns:
+            DUTrack: Loaded model instance
+        """
+        # Download model from Hub
+        filepath = hf_hub_download(repo_id=repo_id, filename="pytorch_model.bin")
+        checkpoint = torch.load(filepath, map_location="cpu")
+        
+        # Create model instance from checkpoint config
+        cfg = checkpoint.get("cfg", None)
+        if cfg is None:
+            raise ValueError("Checkpoint must contain model config under 'cfg' key")
+            
+        model = build_dutrack(cfg, training=False)
+        
+        # Load weights
+        missing_keys, unexpected_keys = model.load_state_dict(checkpoint["net"], strict=False)
+        print('Load pretrained model from: ' + repo_id)
+        
+        return model
 
     def forward(self, template: torch.Tensor,
                 search: torch.Tensor,
