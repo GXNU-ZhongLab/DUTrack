@@ -48,8 +48,8 @@ lib/test/evaluation/local.py  # paths about testing
 ```
 Finally, you need to set the model paths for BLIP and BERT in the configuration file.
 ```
-cfg.MODEL.BERT_DIR: path for [BERT](https://drive.google.com/file/d/15auHrvOV8eDPsasJGdBMr3lgCcaE9gG8/view?usp=sharing) 
-cfg.MODEL.BLIP_DIR: path for [BLIP](https://drive.google.com/file/d/19GwrxtlMbbYn2QffWJdaiBPBrm-K4ZAX/view?usp=sharing) 
+cfg.MODEL.BERT_DIR: path for [BERT](https://huggingface.co/google-bert/bert-base-uncased) 
+cfg.MODEL.BLIP_DIR: path for [BLIP](https://huggingface.co/Salesforce/blip-image-captioning-base) 
 ```
 
 ## Data Preparation
